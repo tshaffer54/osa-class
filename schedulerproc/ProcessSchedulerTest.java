@@ -94,7 +94,7 @@ public class ProcessSchedulerTest {
         instance.add(new SimpleProcess(3, 0, 2));
         instance.add(new SimpleProcess(3, 0, 3));
 
-        double expResult = 5.66;
+        double expResult = 5.666;
         double result = instance.useRoundRobin();
 
         assertEquals(expResult, result, 0.001);
