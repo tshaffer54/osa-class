@@ -97,7 +97,7 @@ public class ProcessSchedulerTest {
         double expResult = 5.66;
         double result = instance.useRoundRobin();
 
-        assertEquals(expResult, result, 0.0);
+        assertEquals(expResult, result, 0.001);
     }
 
 }
