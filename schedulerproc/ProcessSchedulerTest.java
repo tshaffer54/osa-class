@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -46,7 +47,26 @@ public class ProcessSchedulerTest {
         double expResult = 17.0;
         double result = instance.useFirstComeFirstServe();
 
-        assertEquals(expResult, result, 0.001);
+        assertEquals(expResult, result, 0.01);
+    }
+
+    /**
+     * Test of useFirstComeFirstServe method, of class ProcessScheduler.
+     */
+    @Test
+    public void testUseFirstComeFirstServe2() {
+        System.out.println("useFirstComeFirstServe");
+        ProcessScheduler instance = new ProcessScheduler();
+        instance.add(new SimpleProcess(9, 0, 1));
+        instance.add(new SimpleProcess(5, 0, 2));
+        instance.add(new SimpleProcess(4, 0, 3));
+        instance.add(new SimpleProcess(6, 0, 4));
+        instance.add(new SimpleProcess(8, 0, 5));
+
+        double expResult = 13.0;
+        double result = instance.useFirstComeFirstServe();
+
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -63,7 +83,26 @@ public class ProcessSchedulerTest {
         double expResult = 3.0;
         double result = instance.useShortestJobFirst();
 
-        assertEquals(expResult, result, 0.001);
+        assertEquals(expResult, result, 0.01);
+    }
+
+    /**
+     * Test of useShortestJobFirst method, of class ProcessScheduler.
+     */
+    @Test
+    public void testUseShortestJobFirst2() {
+        System.out.println("useShortestJobFirst2");
+        ProcessScheduler instance = new ProcessScheduler();
+        instance.add(new SimpleProcess(9, 0, 0));
+        instance.add(new SimpleProcess(5, 0, 0));
+        instance.add(new SimpleProcess(4, 0, 0));
+        instance.add(new SimpleProcess(6, 0, 0));
+        instance.add(new SimpleProcess(8, 0, 0));
+
+        double expResult = 10.2;
+        double result = instance.useShortestJobFirst();
+
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -80,7 +119,26 @@ public class ProcessSchedulerTest {
         double expResult = 10.0;
         double result = instance.usePriorityScheduling();
 
-        assertEquals(expResult, result, 0.001);
+        assertEquals(expResult, result, 0.01);
+    }
+
+    /**
+     * Test of usePriorityScheduling method, of class ProcessScheduler.
+     */
+    @Test
+    public void testUsePriorityScheduling2() {
+        System.out.println("usePriorityScheduling");
+        ProcessScheduler instance = new ProcessScheduler();
+        instance.add(new SimpleProcess(9, 5, 0));
+        instance.add(new SimpleProcess(5, 4, 0));
+        instance.add(new SimpleProcess(4, 3, 0));
+        instance.add(new SimpleProcess(6, 2, 0));
+        instance.add(new SimpleProcess(8, 1, 0));
+
+        double expResult = 12.6;
+        double result = instance.usePriorityScheduling();
+
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -97,7 +155,25 @@ public class ProcessSchedulerTest {
         double expResult = 5.66;
         double result = instance.useRoundRobin();
 
-        assertEquals(expResult, result, 0.0);
+        assertEquals(expResult, result, 0.01);
     }
 
+    /**
+     * Test of useRoundRobin method, of class ProcessScheduler.
+     */
+    @Test
+    public void testUseRoundRobin2() {
+        System.out.println("useRoundRobin");
+        ProcessScheduler instance = new ProcessScheduler();
+        instance.add(new SimpleProcess(9, 0, 0));
+        instance.add(new SimpleProcess(5, 0, 0));
+        instance.add(new SimpleProcess(4, 0, 0));
+        instance.add(new SimpleProcess(6, 0, 0));
+        instance.add(new SimpleProcess(8, 0, 0));
+
+        double expResult = 19.0;
+        double result = instance.useRoundRobin();
+
+        assertEquals(expResult, result, 0.01);
+    }
 }
