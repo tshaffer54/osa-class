@@ -40,22 +40,93 @@ public class DiskScheduler {
     }
 
     public void useSSTF(String requestQueue) {
-        List<String> request = new ArrayList<>(Arrays.asList(requestQueue.split(",")));
-        System.out.println(request);
+        List<String> req = new ArrayList<>(Arrays.asList(requestQueue.split(",")));
+        List<Integer> request = new ArrayList<>();
+        for (int index = 0; index < req.size(); index++) {
+            request.add(Integer.parseInt(req.get(index)));
+        }
+        while (request.size() != 0) {
+            int start = this.currentCylinder;
+            int next = 0;
+            for (Integer num : (request)) {
+                if (num < this.currentCylinder) {
+                    if (num > next) {
+                        next = num;
+                    }
+                } else {
+                    int min_idx = request.indexOf(Collections.min(request));
+                    if (request.get(min_idx) > start) {
+                        next = request.get(min_idx);
+                    }
+
+                }
+            }
+            totalMoves += Math.abs(this.currentCylinder - next);
+            request.remove((Integer) next);
+            this.currentCylinder = next;
+        }
     }
 
     public void useLOOK(String requestQueue) {
-        System.out.println("current: " + this.currentCylinder);
-        System.out.println("previous: " + this.previousCylinder);
-        List<String> request = new ArrayList<>(Arrays.asList(requestQueue.split(",")));
-        for (IntStream.range(0, request.size())) {
-            
+        List<String> req = new ArrayList<>(Arrays.asList(requestQueue.split(",")));
+        List<Integer> request = new ArrayList<>();
+        for (int index = 0; index < req.size(); index++) {
+            request.add(Integer.parseInt(req.get(index)));
+        }
+        while (request.size() != 0) {
+            int start = this.currentCylinder;
+            int next = 0;
+            for (Integer num : (request)) {
+                if (num < this.currentCylinder) {
+                    if (num > next) {
+                        next = num;
+                    }
+                } else {
+                    int min_idx = request.indexOf(Collections.min(request));
+                    if (request.get(min_idx) > start) {
+                        next = request.get(min_idx);
+                    }
+
+                }
+            }
+            totalMoves += Math.abs(this.currentCylinder - next);
+            request.remove((Integer) next);
+            this.currentCylinder = next;
         }
     }
 
     public void useCLOOK(String requestQueue) {
+        List<String> req = new ArrayList<>(Arrays.asList(requestQueue.split(",")));
+        List<Integer> request = new ArrayList<>();
+        for (int index = 0; index < req.size(); index++) {
+            request.add(Integer.parseInt(req.get(index)));
+        }
+        while (request.size() != 0) {
+            int start = this.currentCylinder;
+            int change = 0;
+            int next = 0;
+            for (Integer num : (request)) {
+                if (num < this.currentCylinder) {
+                    if (num > next) {
+                        next = num;
+                    }
+                } else {
+                    int min_idx = request.indexOf(Collections.min(request));
+                    if (request.get(min_idx) > start) {
+                        change = this.currentCylinder;
+                        next = this.cylinders -1;
+                    }
 
-        throw new UnsupportedOperationException();
+                }
+            }
+            if (next == this.cylinders-1) {
+                totalMoves += change;
+            } else {
+                totalMoves += Math.abs(this.currentCylinder - next);
+            }
+            request.remove((Integer) next);
+            this.currentCylinder = next;
+        }
     }
 
 }
