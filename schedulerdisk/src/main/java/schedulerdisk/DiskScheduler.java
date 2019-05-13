@@ -1,7 +1,10 @@
 package schedulerdisk;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -22,22 +25,36 @@ public class DiskScheduler {
     }
 
     public int getTotalMoves() {
+
         return this.totalMoves;
     }
 
     public void useFCFS(String requestQueue) {
-        throw new UnsupportedOperationException();
+        List<String> request = new ArrayList<>(Arrays.asList(requestQueue.split(",")));
+        while (request.size() != 0) {
+            var next = Integer.parseInt(request.get(0));
+            totalMoves += Math.abs(next - this.currentCylinder);
+            request.remove(0);
+            this.currentCylinder = next;
+        }
     }
 
     public void useSSTF(String requestQueue) {
-        throw new UnsupportedOperationException();
+        List<String> request = new ArrayList<>(Arrays.asList(requestQueue.split(",")));
+        System.out.println(request);
     }
 
     public void useLOOK(String requestQueue) {
-        throw new UnsupportedOperationException();
+        System.out.println("current: " + this.currentCylinder);
+        System.out.println("previous: " + this.previousCylinder);
+        List<String> request = new ArrayList<>(Arrays.asList(requestQueue.split(",")));
+        for (IntStream.range(0, request.size())) {
+            
+        }
     }
 
     public void useCLOOK(String requestQueue) {
+
         throw new UnsupportedOperationException();
     }
 

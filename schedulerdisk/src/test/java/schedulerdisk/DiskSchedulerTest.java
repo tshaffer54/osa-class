@@ -42,16 +42,16 @@ public class DiskSchedulerTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getTotalMoves method, of class DiskScheduler.
-     */
-    @Test(timeout=1000)
-    public void testGetTotalMoves() {
-        System.out.println("getTotalMoves");
-
-        assertEquals(0, instance200.getTotalMoves());
-        assertEquals(0, instance5000.getTotalMoves());
-    }
+//    /**
+//     * Test of getTotalMoves method, of class DiskScheduler.
+//     */
+//    @Test(timeout=1000)
+//    public void testGetTotalMoves() {
+//        System.out.println("getTotalMoves");
+//
+//        assertEquals(0, instance200.getTotalMoves());
+//        assertEquals(0, instance5000.getTotalMoves());
+//    }
 
     /**
      * Test of useFCFS method, of class DiskScheduler.
@@ -64,23 +64,23 @@ public class DiskSchedulerTest {
         instance5000.useFCFS(requestQueue2);
 
         assertEquals(640, instance200.getTotalMoves());
-        assertEquals(0, instance5000.getTotalMoves());
+        assertEquals(7081, instance5000.getTotalMoves());
     }
 
-    /**
-     * Test of useSSTF method, of class DiskScheduler.
-     */
-    @Test(timeout=1000)
-    public void testUseSSTF() {
-        System.out.println("useSSTF");
-
-        instance200.useSSTF(requestQueue1);
-        instance5000.useSSTF(requestQueue2);
-
-        assertEquals(236, instance200.getTotalMoves());
-        assertEquals(0, instance5000.getTotalMoves());  // Homework 11, question 6
-    }
-
+//    /**
+//     * Test of useSSTF method, of class DiskScheduler.
+//     */
+//    @Test(timeout=1000)
+//    public void testUseSSTF() {
+//        System.out.println("useSSTF");
+//
+//        instance200.useSSTF(requestQueue1);
+//        instance5000.useSSTF(requestQueue2);
+//
+//        assertEquals(236, instance200.getTotalMoves());
+//        assertEquals(1745, instance5000.getTotalMoves());  // Homework 11, question 6
+//    }
+//
     /**
      * Test of useLOOK method, of class DiskScheduler.
      */
@@ -89,24 +89,24 @@ public class DiskSchedulerTest {
         System.out.println("useLOOK");
 
         instance200.useLOOK(requestQueue1);
-        instance5000.useLOOK(requestQueue2);
+//        instance5000.useLOOK(requestQueue2);
 
         assertEquals(208, instance200.getTotalMoves());
-        assertEquals(0, instance5000.getTotalMoves());  // Homework 11, question 8
+        assertEquals(3319, instance5000.getTotalMoves());  // Homework 11, question 8
     }
-
-    /**
-     * Test of useCLOOK method, of class DiskScheduler.
-     */
-    @Test(timeout=1000)
-    public void testUseCLOOK() {
-        System.out.println("useCLOOK");
-
-        instance200.useCLOOK(requestQueue1);
-        instance5000.useCLOOK(requestQueue2);
-
-        assertEquals(322, instance200.getTotalMoves());
-        assertEquals(0, instance5000.getTotalMoves());  // Homework 11, question 10
-    }
-
+//
+//    /**
+//     * Test of useCLOOK method, of class DiskScheduler.
+//     */
+//    @Test(timeout=1000)
+//    public void testUseCLOOK() {
+//        System.out.println("useCLOOK");
+//
+//        instance200.useCLOOK(requestQueue1);
+//        instance5000.useCLOOK(requestQueue2);
+//
+//        assertEquals(322, instance200.getTotalMoves());
+//        assertEquals(1675, instance5000.getTotalMoves());  // Homework 11, question 10
+//    }
+//
 }
